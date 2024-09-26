@@ -1,0 +1,67 @@
+
+
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Form-v6 by Colorlib</title>
+    <!-- Mobile Specific Metas -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <!-- Font-->
+    <link rel="stylesheet" type="text/css" href="/css/nunito-font.css">
+    <!-- Main Style Css -->
+    <link rel="stylesheet" href="/css/register.css"/>
+</head>
+<body class="form-v6">
+<div class="page-content">
+    <div class="form-v6-content">
+        <div class="form-left">
+            <img src="/img/form-v6.jpg" alt="form">
+        </div>
+
+        <form class="form-detail" th:action="@{/addUser}" th:object="${User}"  method="post">
+            <h2>Register Form</h2>
+            <div class="form-row">
+                <input type="text" name="username" id="full-name" class="input-text" placeholder="Your Name" required th:field="*{name}">
+            </div>
+            <div class="form-row">
+                <input type="text" name="email" id="email" class="input-text" placeholder="Email Address" required pattern="[^@]+@[^@]+.[a-zA-Z]{2,6}" th:field="*{email}">
+            </div>
+            <div class="form-row">
+                <input type="text" name="address" id="address" class="input-text" placeholder="Address" required th:field="*{address}">
+            </div>
+            <div class="form-row">
+                <input type="tel" name="phone" id="phone" class="input-text" placeholder="Phone number" required pattern="[0-9]{3}[0-9]{3}[0-9]{4}" th:field="*{phoneNumber}">
+            </div>
+            <div class="form-row">
+                <input type="password" name="password" id="password" class="input-text" placeholder="Password" required th:field="*{password}">
+            </div>
+            <div class="form-row">
+                <input type="password" name="comfirm-password" id="comfirm-password" class="input-text" placeholder="Comfirm Password" required>
+            </div>
+            <div>
+                <p style="color: red; margin-left: 70px; font-style: italic;"  th:text="${error}">  </p>
+            </div>
+            <div class="form-row-last">
+                <input type="submit" name="register" class="register" value="Register" onclick="matchPassword()">
+            </div>
+        </form>
+
+    </div>
+</div>
+<script>
+    function matchPassword() {
+
+
+             var pw1 = $('#password').val();
+             var pw2 = $('#comfirm-password').val();
+              if(pw1 != pw2)
+            {
+                 alert("Password does not match");
+            	     event.preventDefault();
+                }
+           }
+</script>
+</body>
+</html>
+
